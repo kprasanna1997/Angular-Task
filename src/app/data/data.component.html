@@ -1,0 +1,59 @@
+<div class="container">
+  <div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add post
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add post</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="postForm" (ngSubmit)="post()">
+                <div class="form-group">
+                  <label >Post title</label>
+                  <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="title">
+                  <span style="color: red; font-size: small;" *ngIf="title.invalid && title.touched && postForm.controls['title'].errors['required']">Title cannot be empty</span>
+                </div>
+                <div class="form-group">
+                   <label >Post body</label>
+                   <input type="text" class="form-control" aria-describedby="emailHelp" formControlName="body">
+                   <span style="color: red; font-size: small;" *ngIf="body.invalid && body.touched && postForm.controls['body'].errors['required']">Body cannot be empty</span>
+                </div>
+                <button type="submit" [disabled]="postForm.invalid" class="btn btn-primary">Submit</button>
+                <button type="button" id="close" class="btn btn-info ml-2" data-dismiss="modal">Close</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <div class="table mt-2">
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Body</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.title}}</td>
+            <td>{{user.body}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+    
+</div>
+
